@@ -10,3 +10,4 @@
 - Then you create a table in the database (it creates the sql than is run against the database), you need to run the migrate command
   `npx prisma migrate dev --name init` . You give it name with the --name option. (It can be anything)
 - Then to see all the tables you can run the handy script `npx prisma studio`
+- blah
