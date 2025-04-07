@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signUpDefaultValues } from "@/lib/constants";
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, startTransition } from "react";
 import { useFormStatus } from "react-dom";
 import { signUpUser } from "@/lib/actions/user.actions";
 // import { useSearchParams } from "next/navigation";
@@ -29,8 +29,17 @@ const SignUpForm = () => {
     message: "",
   });
 
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    startTransition(() => {
+      action(formData);
+    });
+  };
+
   return (
-    <form action={action}>
+    <form onSubmit={handleFormSubmit}>
       {/* <input type="hidden" name="callbackUrl" value={callbackUrl} /> */}
       <div className="space-y-6">
         <div>
